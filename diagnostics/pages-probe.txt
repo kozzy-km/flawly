@@ -1,0 +1,29 @@
+repo: kozzy-km/flawly
+run ref: refs/heads/arena/01a0dc0a-flawly
+
+== GET /repos/{owner}/{repo}/pages ==
+{
+  "message": "Not Found",
+  "documentation_url": "https://docs.github.com/rest/pages/pages#get-a-apiname-pages-site",
+  "status": "404"
+}
+
+HTTP_STATUS 404
+
+== POST /repos/{owner}/{repo}/pages (build_type=workflow) ==
+{
+  "message": "Resource not accessible by integration",
+  "documentation_url": "https://docs.github.com/rest/pages/pages#create-a-apiname-pages-site",
+  "status": "403"
+}
+
+HTTP_STATUS 403
+
+== GET /repos/{owner}/{repo}/installation (app permissions) ==
+{
+  "message": "A JSON web token could not be decoded",
+  "documentation_url": "https://docs.github.com/rest",
+  "status": "401"
+}
+
+HTTP_STATUS 401
