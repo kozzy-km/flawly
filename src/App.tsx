@@ -270,7 +270,7 @@ export default function App() {
                 De una identidad estable a una expresión que cambia.<br className="desktop-only" /> Explorá las piezas de la arquitectura propuesta.
               </p>
             </div>
-            <a className="text-link" href="/docs/about-flawly.txt" download>
+            <a className="text-link" href="docs/about-flawly.txt" download>
               Notas del sistema <Icon name="download" size={16} />
             </a>
           </div>
@@ -626,7 +626,7 @@ export default function App() {
               <p>
                 Lo que conviene saber sobre<br />el proyecto, los modelos y esta web.
               </p>
-              <a className="text-link" href="/docs/about-flawly.txt" download>
+              <a className="text-link" href="docs/about-flawly.txt" download>
                 Ir a la fuente original <Icon name="download" size={15} />
               </a>
             </div>
@@ -718,7 +718,7 @@ export default function App() {
                 <h3>INVESTIGACIÓN</h3>
                 <a href="#investigacion">Evaluación v0.1</a>
                 <a href="#experiencia">Transcripciones</a>
-                <a href="/docs/about-flawly.txt" download>
+                <a href="docs/about-flawly.txt" download>
                   Documento original <Icon name="download" size={12} />
                 </a>
                 <a href="#creador">El creador</a>

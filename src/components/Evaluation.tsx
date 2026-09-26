@@ -18,7 +18,7 @@ export default function Evaluation() {
           <h2>Lo que probamos.<br /><span className="muted">Lo que todavía no.</span></h2>
           <p>Una evaluación empírica del prototipo. Resultados concretos,<br className="desktop-only" /> limitaciones a la vista y ninguna conclusión inflada.</p>
         </div>
-        <a className="text-link" href="/docs/about-flawly.txt" download>Descargar informe completo <Icon name="download" size={16} /></a>
+        <a className="text-link" href="docs/about-flawly.txt" download>Descargar informe completo <Icon name="download" size={16} /></a>
       </div>
       <div className="study-summary reveal">
         <div><span className="mono">DISEÑO DE LA PRUEBA</span><strong>Un mismo guion.<br />Dos niveles.</strong></div>
@@ -81,7 +81,7 @@ export default function Evaluation() {
               <Icon name="file" size={20} />
               <strong>El contexto completo importa.</strong>
               <p>Consultá ambos registros íntegros en el documento original.</p>
-              <a href="/docs/about-flawly.txt" download>Ver documento <Icon name="download" size={13} /></a>
+              <a href="docs/about-flawly.txt" download>Ver documento <Icon name="download" size={13} /></a>
             </div>
           </aside>
           <div className="transcript-main">

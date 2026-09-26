@@ -1,84 +1,104 @@
 # Flawly
 
-Flawly is a personal experiment in conversational AI, built around one question I keep coming back to: what actually makes a chat feel like talking to someone, instead of reading output?
+Flawly is a small, self-funded experiment on conversational AI, built around one question I keep coming back to: what makes a chat feel like talking to someone, rather than reading output?
 
-It is not trying to be a better assistant. Accuracy, speed and task completion are already handled well by the big models, and that is not the interesting part. What interests me is everything those systems treat as noise: timing, hesitation, mood, small mistakes, and the way a conversation shifts depending on who is on the other side of it.
+I am not trying to build a better assistant. Speed, accuracy and task completion are already handled well by the large models, and that is not the part I find interesting. What interests me is everything those systems usually treat as noise: timing, hesitation, mood, small mistakes, and the way a conversation changes shape depending on who is on the other side of it.
 
-## What it is
-
-Flawly is a conversational system that deliberately gives up some polish in exchange for presence. Replies are written the way people write them, in several short turns instead of one clean block, sometimes with a typo that gets corrected a moment later, sometimes with a pause before an answer that matters. The pacing changes with the length of the message and with the state of the conversation, and it slows down when the topic gets heavier.
-
-Under it sits a persona that stays the same across sessions, a short-term mood that does not, and an adaptation layer that reads the tone of whoever is writing and adjusts without losing its own voice.
-
-It is honest about what it is. Flawly does not claim to feel anything, and it does not pretend to be a person. The states, pauses and rhythm variations are computational constructs I designed to study how people read them — nothing more.
+**The site lives at [kozzy-km.github.io/flawly](https://kozzy-km.github.io/flawly/).**
 
 ## The premise
 
 > Natural conversation is not perfect. It is coherent, adaptive, and subtly inconsistent.
 
-I started from the assumption that frictionless instant answers feel inert. Rebuilding a little of that friction — the time it takes to think, the reply that gets deleted before it is sent, the flatness of a tired evening — is what makes a digital presence read as real. If that is true, then imperfection is not a defect to fix. It is the mechanism.
+Most assistants answer instantly, in one clean block, with the same tone regardless of the hour or the mood of the conversation. That works for tasks, but it leaves the exchange feeling inert. Flawly starts from the opposite assumption: that a bit of friction is what makes a presence read as real. A pause before an answer that matters, a typo corrected a second later, a shorter reply because the simulated day has been long. None of that is a defect to be fixed later. It is the mechanism being studied.
 
-The questions I am working through:
+Four questions sit underneath the whole thing:
 
-- How do people read conversational intent, and at which point do they stop reading it as a machine?
-- What makes an exchange feel alive rather than correct?
+- How do people read conversational intent, and when do they stop reading it as a machine?
+- What makes an interaction feel alive rather than merely correct?
 - Where is the line between structured language and a perceived personality?
 - How much of an AI's behaviour is actually the user's own projection coming back at them?
 
-That last one is the uncomfortable one, and it is the reason the project spends as much time on boundaries as on behaviour.
+That last one is the uncomfortable one, and it is the reason the project spends as much time on limits as it does on behaviour.
 
-## How it is put together
+## How it works
 
-Four layers, each doing one job:
+The prototype is organised in four layers, each with a single job:
 
-**Immutable persona** — the anchor. Name, simulated age, core traits, vocabulary limits and initial cognitive biases. Mood and fatigue move around it; they never overwrite it.
+**Immutable persona.** The anchor. Name, simulated age, core traits, vocabulary limits and initial cognitive biases. Mood and fatigue move around it but never overwrite it.
 
-**Fluid mood state** — short-term variables driven by the flow of the chat: energy (enthusiasm against exhaustion), focus (sharp against tangential), and a small probability of slips and of longer replies. Fatigue accumulates with the pace of the interaction and the simulated time of day.
+**Fluid mood state.** Short-term variables driven by the flow of the chat: energy (enthusiasm against exhaustion), focus (sharp against tangential), and a small probability of slips and of longer replies. Fatigue accumulates with the pace of the interaction and the simulated time of day.
 
-**Interaction-based adaptation** — reads cadence, capitalisation, formality and emotional load from the user, and adjusts tone in response. It mirrors or counterbalances, but does not abandon the base identity.
+**Interaction-based adaptation.** Reads cadence, capitalisation, formality and emotional load from the user and adjusts tone in response. It mirrors or counterbalances, but does not abandon the base identity.
 
-**Temporal expression** — the non-verbal part. Typing delays scaled to text density, short reflection pauses before punctuation, and an uneven rhythm that breaks the instant block-of-text delivery typical of language models.
+**Temporal expression.** The non-verbal part. Typing delays scaled to the density of the text, brief reflection pauses before punctuation, and an uneven rhythm that breaks the instant delivery of a finished block of text.
 
-## Model tiers
+## Sway and Awly
 
-Two tiers are in testing, and they are not simply "worse" and "better":
+Two model tiers are in testing, and they are not simply "worse" and "better".
 
-**Sway** is the free tier. Lightweight, casual, good for short everyday conversation and quick emotional presence. Short memory, less continuity, occasionally flat.
+**Sway** is the free tier. Lightweight and casual, good for short everyday conversation and for a quick sense of presence. Shorter memory, less continuity, occasionally flat.
 
-**Awly** is the premium tier. Deeper reflection, richer continuity, stronger recall across a session. It feels more present, and it fails in more noticeable ways.
+**Awly** is the premium tier. Deeper reflection, richer continuity, stronger recall across a session. It feels more present, and when it fails, the failure is more noticeable.
 
 ## What I am measuring
 
-Two ideas drive the current evaluation work:
+Two ideas drive the current evaluation work. The first is *linguistic pacing entropy*: how much the interval between keystrokes varies over a conversation, compared across three modes (balanced, hyperactive, exhausted) and against the flat line of a conventional assistant. The second is a *conversational resonance* map that places different systems between conversational naturalness and task focus, with commercial assistants on the precision side, legacy support bots in the rigid corner and actual humans as the volatile reference point.
 
-**Linguistic pacing entropy** — how much the interval between keystrokes varies over a conversation, compared across three modes (balanced, hyperactive and exhausted) and against the flat line of a conventional assistant.
+Testing happens in long sessions rather than single prompts, because most of what I care about only shows up after twenty or thirty turns.
 
-**Conversational resonance** — a quadrant that places different systems between conversational naturalness and task focus. Flawly aims at the high-naturalness, rythmically adaptive side, with commercial assistants on the precision side, legacy support bots in the rigid corner and actual humans as the volatile reference point.
+## Test results (v0.1)
 
-Testing is done in long sessions rather than single prompts, because most of what I care about only shows up after twenty or thirty turns. A full write-up of one of those sessions, comparing Sway and Awly on the same 24-turn script, is in [`evaluation/`](evaluation/).
+The first written evaluation compares Sway and Awly on the same 24-turn script, with full transcripts from real sessions: casual conversation, short-term memory, a simple arithmetic check, model-tier reasoning, and the risks of an AI that feels emotionally real.
 
-## Status
+Sway was more stable and more direct, but flatter and slightly interview-like. Awly was deeper and much better at the final recall, and it was the one that named the ethical problem of monetising attachment, but it also produced several context slips, including a premature closing message and one answer to the wrong question.
 
-Experimental research prototype, developed alone, still early. Access is invite-based and staged through a waiting list, so the test phases stay small enough to read properly.
+The full report, including both transcripts and the caveats about how the sessions were run, is in [`public/docs/about-flawly.txt`](public/docs/about-flawly.txt) and is linked from the site.
 
-None of this simulates consciousness or biological emotion, and I would rather say that plainly than let the interface imply otherwise.
+## Running the project locally
 
-## The site
+The site is a Vite + React + TypeScript project, built into a single HTML file with everything inlined.
 
-The project site (metrics, interactive charts, notes on the design) is published from this repository via GitHub Pages:
+```bash
+npm install
+npm run dev      # dev server on http://localhost:5173
+npm run build    # production build into dist/
+npm run preview  # serve the production build
+```
 
-**https://kozzy-km.github.io/flawly/**
+There is also a headless check of the interface (structure, keyboard navigation, the interactive charts, the FAQ, the access dialog and horizontal overflow at several widths) in `scripts/verify.mjs`. It needs Playwright:
+
+```bash
+npm install --no-save playwright
+npx playwright install chromium
+npm run dev            # in another terminal
+node scripts/verify.mjs
+```
 
 ## Repository layout
 
 ```
 .
-├── index.html          # project site (GitHub Pages entry point)
-├── assets/             # site styles, scripts and static files
-├── evaluation/         # test write-ups from real sessions
-└── README.md
+├── index.html              # site shell (single-file build output)
+├── src/                    # React components, data and styles
+│   ├── App.tsx             # page structure
+│   ├── components/         # sphere, laboratory, evaluation, access dialog
+│   └── data.ts             # copy and shared data
+├── public/
+│   ├── flawly.svg          # mark wordmark
+│   └── docs/about-flawly.txt  # full project document and test report
+├── scripts/verify.mjs      # interface checks
+└── .github/workflows/deploy-pages.yml
 ```
 
----
+Pushes to `main` build the site and publish it to GitHub Pages.
 
-Flawly is an independent project. It is not affiliated with any company, lab or research institution.
+## Status
+
+Experimental research prototype, developed alone, still early. Access is invite-based and staged through a waiting list so the test phases stay small enough to read properly. The current build is a public record of the design and of what the sessions actually returned, mistakes included.
+
+Flawly does not simulate consciousness or biological emotion. Mood states, pauses and rhythm variations are computational constructs I designed to study how people read them. It is an independent project, not affiliated with any company, lab or research institution.
+
+## Contact
+
+For test access or questions about the work, use the waiting list on the site or open an issue here.
