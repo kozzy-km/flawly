@@ -1,0 +1,22 @@
+/* Flawly identity — keep the existing visual system and layout. */
+.brand-mark.flawly-mark {
+  width: 30px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: none;
+  gap: 0;
+  margin-right: 0;
+}
+.flawly-mark svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.brand-mark.flawly-mark.small { width: 19px; height: 20px; }
+.assistant-avatar .brand-mark.flawly-mark { transform: scale(.76); }
+.footer-top > .brand .brand-mark.flawly-mark { transform: none; width: 25px; height: 27px; margin-right: 0; }
+.access-watermark > .brand-mark.flawly-mark { transform: scale(9); }
+@media (max-width: 800px) {
+  .access-watermark > .brand-mark.flawly-mark { transform: scale(6); }
+}
+@media (max-width: 520px) {
+  .brand > .brand-mark.flawly-mark { width: 25px; height: 27px; }
+}
