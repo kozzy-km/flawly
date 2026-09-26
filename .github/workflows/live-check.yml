@@ -1,0 +1,53 @@
+name: live-check
+
+# Temporary: checks the deployed site from a runner and reports the result in
+# the repository. Removed after verification.
+
+on:
+  push:
+    branches:
+      - arena/01a0dc0a-flawly
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check live site
+        run: |
+          set +e
+          {
+            echo "checked at: $(date -u +%FT%TZ)"
+            echo
+            for p in "" "flawly.svg" "docs/about-flawly.txt"; do
+              printf "%-24s " "/$p"
+              curl -sS -o /tmp/body -w "%{http_code} %{size_download} bytes %{content_type} %{time_total}s\n" \
+                "https://kozzy-km.github.io/flawly/$p"
+              case "$p" in
+                "") cp /tmp/body /tmp/index.html ;;
+              esac
+            done
+            echo
+            echo "title: $(grep -o '<title>[^<]*</title>' /tmp/index.html | head -1)"
+            echo "h1 present: $(grep -c '<h1>' /tmp/index.html)"
+            echo "inlined script present: $(grep -c 'id="root"' /tmp/index.html)"
+            echo "icon reference: $(grep -o 'href=\"[^\"]*flawly.svg\"' /tmp/index.html | head -1)"
+            echo
+            echo "== GET /repos/{owner}/{repo}/pages =="
+            curl -sS -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              "https://api.github.com/repos/${{ github.repository }}/pages"
+          } > live-check.txt 2>&1
+          cat live-check.txt
+
+      - name: Commit result
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add live-check.txt
+          git commit -m "chore: live site check" || echo "nothing to commit"
+          git push
