@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - main
+      - arena/01a0dc0a-flawly
   workflow_dispatch:
 
 permissions:
