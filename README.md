@@ -4,7 +4,7 @@ Flawly is a small, self-funded experiment on conversational AI, built around one
 
 I am not trying to build a better assistant. Speed, accuracy and task completion are already handled well by the large models, and that is not the part I find interesting. What interests me is everything those systems usually treat as noise: timing, hesitation, mood, small mistakes, and the way a conversation changes shape depending on who is on the other side of it.
 
-**The site lives at [kozzy-km.github.io/flawly](https://kozzy-km.github.io/flawly/).**
+**The site lives at [kozzy-km.github.io/flawly](https://kozzy-km.github.io/flawly/).** It is written in Spanish (es-AR), which is the language the project has run in so far.
 
 ## The premise
 
@@ -79,13 +79,13 @@ node scripts/verify.mjs
 
 ```
 .
-├── index.html              # site shell (single-file build output)
+├── index.html              # page shell loaded by Vite
 ├── src/                    # React components, data and styles
 │   ├── App.tsx             # page structure
 │   ├── components/         # sphere, laboratory, evaluation, access dialog
 │   └── data.ts             # copy and shared data
 ├── public/
-│   ├── flawly.svg          # mark wordmark
+│   ├── flawly.svg          # mark used in the navigation and the footer
 │   └── docs/about-flawly.txt  # full project document and test report
 ├── scripts/verify.mjs      # interface checks
 └── .github/workflows/deploy-pages.yml
