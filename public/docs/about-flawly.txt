@@ -1,5 +1,5 @@
 
-Resumen General de Flawly (AI)
+> Flawly Summary
 1. ¿Qué es Flawly?
 Flawly es un sistema experimental de inteligencia artificial conversacional enfocado en explorar la percepción de naturalidad humana en el diálogo, distanciándose deliberadamente de los modelos que solo buscan la precisión mecánica, la velocidad extrema o la mera resolución de tareas.
 En lugar de tratar el lenguaje como un problema estático de respuesta matemática, Flawly investiga la experiencia psicológica de la conversación: cómo las personas perciben el tono, la personalidad, las dudas y la continuidad temporal a lo largo del tiempo.
