@@ -1,6 +1,6 @@
 # Flawly
 
-Flawly is a small, self-funded experiment on conversational AI, built around one question I keep coming back to: what makes a chat feel like talking to someone, rather than reading output?
+Flawly is a small experiment on conversational AI, built around one question I keep coming back to: what makes a chat feel like talking to someone, rather than reading output?
 
 I am not trying to build a better assistant. Speed, accuracy and task completion are already handled well by the large models, and that is not the part I find interesting. What interests me is everything those systems usually treat as noise: timing, hesitation, mood, small mistakes, and the way a conversation changes shape depending on who is on the other side of it.
 
