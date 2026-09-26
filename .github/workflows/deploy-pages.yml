@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - main
-      - arena/01a0dc0a-flawly
   workflow_dispatch:
 
 permissions:
@@ -37,11 +36,6 @@ jobs:
 
       - name: Build
         run: npm run build
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
