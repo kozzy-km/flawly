@@ -1,0 +1,39 @@
+name: asset-inbox
+
+# Temporary helper workflow: pulls an externally hosted asset into the repo so it
+# can be inspected and placed properly. Removed once the site is in place.
+
+on:
+  push:
+    branches:
+      - arena/01a0dc0a-flawly
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download and unpack provided asset
+        run: |
+          set -e
+          curl -sSL --retry 3 -o /tmp/asset.zip "https://files.catbox.moe/p8ba3x.zip"
+          echo "size: $(stat -c%s /tmp/asset.zip)"
+          echo "sha256: $(sha256sum /tmp/asset.zip)"
+          rm -rf .asset-inbox
+          mkdir -p .asset-inbox
+          unzip -o /tmp/asset.zip -d .asset-inbox
+          echo "--- file list ---"
+          find .asset-inbox -type f | head -200
+
+      - name: Commit inbox
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A .asset-inbox
+          git commit -m "chore: stage externally provided asset" || echo "nothing to commit"
+          git push
